@@ -116,5 +116,4 @@ bot.on('message', function (message) {
 	}
 });
 
-import key from "key.js";
 bot.login(key);
