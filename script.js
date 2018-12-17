@@ -43,75 +43,84 @@ bot.on('message', function (message) {
 	let commande = message.content;
 	let amelioration = commande.split(" ");
 	if (amelioration[0] == '!bunny') {
-        if (amelioration[1] == end) {
-            message.channel.send("Je rentre en hibernation !");
-            process.exit(0);
-        }
+		if (amelioration[1] == 'end') {
+			message.channel.send("Je rentre en hibernation !");
+			process.exit(0);
+		}
 		if (amelioration[1] == 'help'){
 			message.channel.send(
 `Bonjour, je suis le Bunnybot ! Voici mes commandes et syntaxes.
-								
+
 !bunny fail FAILSTACK NIVEAU_D'ITEM : Affiche les pourcentages de chances d'upgrade X items avec Y failstacks. (Exemple : !bunny fail 30 TRI)
-								
+
 !bunny failtab : Affiche la liste des failstack maximums pour chaque amélioration dans l'ordre croissant.`)
 		}
 		if (amelioration[1] == 'fail') {
-
-			if (amelioration[3] == '+7') {
-				chancetotal = 20 + (pourcentages.huit * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == '+8') {
-				chancetotal = 17.5 + (pourcentages.neuf * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == '+9') {
-				chancetotal = 15 + (pourcentages.dix * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == '+10') {
-				chancetotal = 12.5 + (pourcentages.onze * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == '+11') {
-				chancetotal = 10 + (pourcentages.douze * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == '+12') {
-				chancetotal = 7.5 + (pourcentages.treize * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == '+13') {
-				chancetotal = 5 + (pourcentages.quatorze * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == '+14') {
-				chancetotal = 2.5 + (pourcentages.quinze * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == '+15') {
-				chancetotal = 15 + (pourcentages.PRI * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == 'PRI') {
-				chancetotal = 7.5 + (pourcentages.DUO * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == 'DUO') {
-				chancetotal = 5 + (pourcentages.TRI * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == 'TRI') {
-				chancetotal = 2 + (pourcentages.TET * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
-			}
-			if (amelioration[3] == 'TET') {
-				chancetotal = 1.5 + (pourcentages.PEN * amelioration[2]);
-				message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+			var nbEntier = parseInt(amelioration[2]);
+			if(Number.isInteger(nbEntier) && nbEntier >= 0 && nbEntier <= 124){
+				if (amelioration[3] == '+7') {
+					chancetotal = 20 + (pourcentages.huit * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == '+8') {
+					chancetotal = 17.5 + (pourcentages.neuf * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == '+9') {
+					chancetotal = 15 + (pourcentages.dix * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == '+10') {
+					chancetotal = 12.5 + (pourcentages.onze * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == '+11') {
+					chancetotal = 10 + (pourcentages.douze * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == '+12') {
+					chancetotal = 7.5 + (pourcentages.treize * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == '+13') {
+					chancetotal = 5 + (pourcentages.quatorze * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == '+14') {
+					chancetotal = 2.5 + (pourcentages.quinze * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == '+15') {
+					chancetotal = 15 + (pourcentages.PRI * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == 'PRI') {
+					chancetotal = 7.5 + (pourcentages.DUO * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == 'DUO') {
+					chancetotal = 5 + (pourcentages.TRI * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == 'TRI') {
+					chancetotal = 2 + (pourcentages.TET * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				}
+				else if (amelioration[3] == 'TET') {
+					chancetotal = 1.5 + (pourcentages.PEN * amelioration[2]);
+					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				} else {
+					message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
+				}
+			} else {
+				message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 			}
 		}
 		else if (amelioration[1] == 'failtab'){
 			message.channel.send(failtab);
+		}
+		else if (amelioration[1] != 'failtab' && amelioration[1] != 'fail' && amelioration[1] != 'help') {
+			message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 		}
 	}
 });
