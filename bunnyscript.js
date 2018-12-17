@@ -3,6 +3,7 @@ const bot = new Discord.Client();
 
 bot.on('ready', () => {
 	console.log('Bot ON');
+	bot.user.setActivity("Pour l'aide : !bunny help");
 });
 
 let failtab = 
@@ -38,7 +39,6 @@ let pourcentages = {
 };
 
 bot.on('message', function (message) {
-	bot.user.setStatus("online", "Pour l'aide : !bunny help");
 
 	let commande = message.content;
 	let amelioration = commande.split(" ");
@@ -52,7 +52,6 @@ bot.on('message', function (message) {
 `Bonjour, je suis le Bunnybot ! Voici mes commandes et syntaxes.
 
 !bunny fail FAILSTACK NIVEAU_D'ITEM : Affiche les pourcentages de chances d'upgrade X items avec Y failstacks. (Exemple : !bunny fail 30 TRI)
-
 !bunny failtab : Affiche la liste des failstack maximums pour chaque amélioration dans l'ordre croissant.`)
 		}
 		if (amelioration[1] == 'fail') {
@@ -119,10 +118,22 @@ bot.on('message', function (message) {
 		else if (amelioration[1] == 'failtab'){
 			message.channel.send(failtab);
 		}
+		else if (amelioration[1] == 'links'){
+			message.channel.send(
+				`Voici les liens les plus utiles pour BDO :
+
+Carte pour nodes et villes ect... <http://www.somethinglovely.net/bdo/>
+Calculateur de trading (crates, fish ect...) <http://www.somethinglovely.net/bdo/crates/> 
+Timer de boss (Europe) <https://bdobosstimer.com/?&server=eu>
+Tout savoir sur l'équipement et comment se stuff (en anglais) <https://grumpygreen.cricket/bdo-gear-progression-guide.html>
+Bonne chaine youtube de guides sur l'économie (entre autres & en anglais) <https://www.youtube.com/channel/UC130oC2JmKYmdPQhJ2tVLog>
+
+				`);
+		}
 		else if (amelioration[1] != 'failtab' && amelioration[1] != 'fail' && amelioration[1] != 'help') {
 			message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 		}
 	}
 });
 
-bot.login(key);
+bot.login('NTIyMDY5ODkzMjI3NzQxMTk1.DvFnnA.Yq_JAF2siRHpnWn1oWfrAEsPLz8');
