@@ -52,7 +52,8 @@ bot.on('message', function (message) {
 `Bonjour, je suis le Bunnybot ! Voici mes commandes et syntaxes.
 
 !bunny fail FAILSTACK NIVEAU_D'ITEM : Affiche les pourcentages de chances d'upgrade X items avec Y failstacks. (Exemple : !bunny fail 30 TRI)
-!bunny failtab : Affiche la liste des failstack maximums pour chaque amélioration dans l'ordre croissant.`)
+!bunny failtab : Affiche la liste des failstack maximums pour chaque amélioration dans l'ordre croissant.
+!bunny links : Afficher des liens utiles contenant des informations importantes.`)
 		}
 		if (amelioration[1] == 'fail') {
 			var nbEntier = parseInt(amelioration[2]);
