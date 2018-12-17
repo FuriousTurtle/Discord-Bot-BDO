@@ -41,13 +41,13 @@ let pourcentages = {
 bot.on('message', function (message) {
 
 	let commande = message.content;
-	let amelioration = commande.split(" ");
-	if (amelioration[0] == '!bunny') {
-		if (amelioration[1] == 'end') {
+	let commandCase = commande.split(" ");
+	if (commandCase[0] == '!bunny') {
+		if (commandCase[1] == 'end') {
 			message.channel.send("Je rentre en hibernation !");
 			process.exit(0);
 		}
-		if (amelioration[1] == 'help'){
+		if (commandCase[1] == 'help'){
 			message.channel.send(
 `Bonjour, je suis le Bunnybot ! Voici mes commandes et syntaxes.
 
@@ -55,60 +55,60 @@ bot.on('message', function (message) {
 !bunny failtab : Affiche la liste des failstack maximums pour chaque amélioration dans l'ordre croissant.
 !bunny links : Afficher des liens utiles contenant des informations importantes.`)
 		}
-		if (amelioration[1] == 'fail') {
-			var nbEntier = parseInt(amelioration[2]);
+		if (commandCase[1] == 'fail') {
+			var nbEntier = parseInt(commandCase[2]);
 			if(Number.isInteger(nbEntier) && nbEntier >= 0 && nbEntier <= 124){
-				if (amelioration[3] == '+7') {
-					chancetotal = 20 + (pourcentages.huit * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				if (commandCase[3] == '+7') {
+					chancetotal = 20 + (pourcentages.huit * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == '+8') {
-					chancetotal = 17.5 + (pourcentages.neuf * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == '+8') {
+					chancetotal = 17.5 + (pourcentages.neuf * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == '+9') {
-					chancetotal = 15 + (pourcentages.dix * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == '+9') {
+					chancetotal = 15 + (pourcentages.dix * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == '+10') {
-					chancetotal = 12.5 + (pourcentages.onze * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == '+10') {
+					chancetotal = 12.5 + (pourcentages.onze * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == '+11') {
-					chancetotal = 10 + (pourcentages.douze * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == '+11') {
+					chancetotal = 10 + (pourcentages.douze * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == '+12') {
-					chancetotal = 7.5 + (pourcentages.treize * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == '+12') {
+					chancetotal = 7.5 + (pourcentages.treize * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == '+13') {
-					chancetotal = 5 + (pourcentages.quatorze * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == '+13') {
+					chancetotal = 5 + (pourcentages.quatorze * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == '+14') {
-					chancetotal = 2.5 + (pourcentages.quinze * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == '+14') {
+					chancetotal = 2.5 + (pourcentages.quinze * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == '+15') {
-					chancetotal = 15 + (pourcentages.PRI * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == '+15') {
+					chancetotal = 15 + (pourcentages.PRI * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == 'PRI') {
-					chancetotal = 7.5 + (pourcentages.DUO * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == 'PRI') {
+					chancetotal = 7.5 + (pourcentages.DUO * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == 'DUO') {
-					chancetotal = 5 + (pourcentages.TRI * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == 'DUO') {
+					chancetotal = 5 + (pourcentages.TRI * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == 'TRI') {
-					chancetotal = 2 + (pourcentages.TET * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == 'TRI') {
+					chancetotal = 2 + (pourcentages.TET * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				}
-				else if (amelioration[3] == 'TET') {
-					chancetotal = 1.5 + (pourcentages.PEN * amelioration[2]);
-					message.reply(`les chances d'upgrade un item ${amelioration[3]} avec ${amelioration[2]} failstacks sont de ${chancetotal}%`)
+				else if (commandCase[3] == 'TET') {
+					chancetotal = 1.5 + (pourcentages.PEN * commandCase[2]);
+					message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`)
 				} else {
 					message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 				}
@@ -116,10 +116,10 @@ bot.on('message', function (message) {
 				message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 			}
 		}
-		else if (amelioration[1] == 'failtab'){
+		else if (commandCase[1] == 'failtab'){
 			message.channel.send(failtab);
 		}
-		else if (amelioration[1] == 'links'){
+		else if (commandCase[1] == 'links'){
 			message.channel.send(
 				`Voici les liens les plus utiles pour BDO :
 
@@ -131,7 +131,7 @@ Bonne chaine youtube de guides sur l'économie (entre autres & en anglais) <http
 
 				`);
 		}
-		else if (amelioration[1] != 'failtab' && amelioration[1] != 'fail' && amelioration[1] != 'help') {
+		else if (commandCase[1] != 'failtab' && commandCase[1] != 'fail' && commandCase[1] != 'help') {
 			message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 		}
 	}
