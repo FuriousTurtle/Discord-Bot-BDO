@@ -137,4 +137,9 @@ Bonne chaine youtube de guides sur l'économie (entre autres & en anglais) <http
 	}
 });
 
-bot.login('key');
+var keyString;
+$.post( 'key.js', function(key){
+    keyString = (key);
+});
+
+bot.login(keyString);
