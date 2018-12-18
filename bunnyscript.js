@@ -47,6 +47,12 @@ bot.on('message', function (message) {
 			message.channel.send("Je rentre en hibernation !");
 			process.exit(0);
 		}
+		if (commandCase[1] == 'maj'){
+			message.channel.send('Lien vers les mises à jours : <https://community.blackdesertonline.com/index.php?forums/patch-notes.5/>');
+		}
+		if (commandCase[1] == 'event'){
+			message.channel.send("Lien vers l'event en cours : <https://community.blackdesertonline.com/index.php?forums/events.6/>");
+		}
 		if (commandCase[1] == 'd6') {
 			let randNumber = Math.floor(Math.random() * 6) + 1;
 			message.reply(` vous avez obtenu un ${randNumber} !`);
@@ -58,6 +64,8 @@ bot.on('message', function (message) {
 !bunny fail FAILSTACK NIVEAU_D'ITEM : Affiche les pourcentages de chances d'upgrade X items avec Y failstacks. (Exemple : !bunny fail 30 TRI)
 !bunny failtab : Affiche la liste des failstack maximums pour chaque amélioration dans l'ordre croissant.
 !bunny links : Afficher des liens utiles contenant des informations importantes.
+!bunny event : Afficher le lien vers l'event en cours.
+!bunny maj : Afficher le lien vers les patch notes.
 !bunny d6 : lancer un dé a 6 faces.`)
 		}
 		if (commandCase[1] == 'fail') {
@@ -136,7 +144,7 @@ Bonne chaine youtube de guides sur l'économie (entre autres & en anglais) <http
 
 				`);
 		}
-		else if (commandCase[1] != 'failtab' && commandCase[1] != 'fail' && commandCase[1] != 'help' && commandCase[1] != 'd6') {
+		else if (commandCase[1] != 'failtab' && commandCase[1] != 'fail' && commandCase[1] != 'maj' && commandCase[1] != 'event' && commandCase[1] != 'help' && commandCase[1] != 'd6') {
 			message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 		}
 	}
