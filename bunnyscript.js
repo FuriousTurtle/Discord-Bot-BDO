@@ -47,13 +47,18 @@ bot.on('message', function (message) {
 			message.channel.send("Je rentre en hibernation !");
 			process.exit(0);
 		}
+		if (commandCase[1] == 'd6') {
+			let randNumber = Math.floor(Math.random() * 6) + 1;
+			message.reply(` vous avez obtenu un ${randNumber} !`);
+		}
 		if (commandCase[1] == 'help'){
 			message.channel.send(
 `Bonjour, je suis le Bunnybot ! Voici mes commandes et syntaxes.
 
 !bunny fail FAILSTACK NIVEAU_D'ITEM : Affiche les pourcentages de chances d'upgrade X items avec Y failstacks. (Exemple : !bunny fail 30 TRI)
 !bunny failtab : Affiche la liste des failstack maximums pour chaque amélioration dans l'ordre croissant.
-!bunny links : Afficher des liens utiles contenant des informations importantes.`)
+!bunny links : Afficher des liens utiles contenant des informations importantes.
+!bunny d6 : lancer un dé a 6 faces.`)
 		}
 		if (commandCase[1] == 'fail') {
 			var nbEntier = parseInt(commandCase[2]);
@@ -131,12 +136,12 @@ Bonne chaine youtube de guides sur l'économie (entre autres & en anglais) <http
 
 				`);
 		}
-		else if (commandCase[1] != 'failtab' && commandCase[1] != 'fail' && commandCase[1] != 'help') {
+		else if (commandCase[1] != 'failtab' && commandCase[1] != 'fail' && commandCase[1] != 'help' && commandCase[1] != 'd6') {
 			message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 		}
 	}
 });
 
-var keyRaw = require('key.js');
+var keyRaw = require('./key.js');
 var keyString = keyRaw.key;
 bot.login(keyString);
