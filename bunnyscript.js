@@ -5,8 +5,7 @@ global.window = global;
 bot.on('ready', () => {
 	console.log('Bot ON');
 	bot.user.setActivity("Pour l'aide : !bunny help");
-	const serv = bot.guilds.get('131164593799036935');
-	const channel = serv.channels.find(ch => ch.name === 'ihaeu');
+	var channel = bot.get_channel('131164593799036935');
 });
 
 let day = 1;
@@ -24,11 +23,11 @@ console.log(hours, mins);
 loop();
 }
 
-function calcSpawn(nbu, nbv, tab2) { 
+function calcSpawn(nbu, nbv, tab2, boss) { 
 	if (hours == tab2[nbu]) { 
 		if (mins == parseInt(tab2[nbv]) - 15 || (parseInt(tab2[nbv]) - 15) == 0){ 
 			channel.send('Le boss Kzarka va spawn dans 15 minutes !'); 
-			console.log(`${hours}:${mins} => spawn de kzarka`); 
+			console.log(`${hours}:${mins} => spawn de ${boss}`); 
 		}
 	}
 }
@@ -40,11 +39,11 @@ function calcStats(nbi){
 	} 
 } 
 
-function calcDay(nbd,tab1,tab2){
+function calcDay(nbd,tab1,tab2, boss){
 	if (day == nbd){
 		global.tab2 = (String(tab1[nbd])).split(','); 
 		for(k = -2, l = -1 ; l < tab2.length ; k += 2, l +=2) { 
-			calcSpawn(k, l, tab2); 
+			calcSpawn(k, l, tab2, boss); 
 		}
 	}
 }
@@ -83,8 +82,14 @@ setInterval(refreshDate, 60000);
 
 function loop(){
 
+	let oof = 1;
+	if (oof = 1){
+		channel.send('Le boss Kzarka va spawn dans 15 minutes !');
+		oof++;
+	}
+
 	for(p = 0; p < daysTab.length; p++){
-		calcDay(p, kzarkaTab, 'kzarkaTemp');
+		calcDay(p, kzarkaTab, 'kzarkaTemp', "Kzarka");
 	}
 
 	bot.on('message', function (message) {
