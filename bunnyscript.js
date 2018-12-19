@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+global.window = global;
 
 bot.on('ready', () => {
 	console.log('Bot ON');
@@ -14,13 +15,38 @@ let mins;
 let today;
 
 function refreshDate(){
-	today = new Date();
+today = new Date();
 //	day = today.getDay();
 hours = today.getHours();
 mins = today.getMinutes();
 console.log("maj de l'heure");
 console.log(hours, mins);
 loop();
+}
+
+function calcSpawn(nbu, nbv, tab2) { 
+	if (hours == tab2[nbu]) { 
+		if (mins == parseInt(tab2[nbv]) - 15 || (parseInt(tab2[nbv]) - 15) == 0){ 
+			channel.send('Le boss Kzarka va spawn dans 15 minutes !'); 
+			console.log(`${hours}:${mins} => spawn de kzarka`); 
+		}
+	}
+}
+
+function calcStats(nbi){ 
+	if (commandCase[3] == amelio[nbi]) { 
+		chancetotal = parseInt(coeffAmelio[nbi]) + (pourcentages[nbi] * commandCase[2]);
+		message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`); 
+	} 
+} 
+
+function calcDay(nbd,tab1,tab2){
+	if (day == nbd){
+		global.tab2 = (String(tab1[nbd])).split(','); 
+		for(k = -2, l = -1 ; l < tab2.length ; k += 2, l +=2) { 
+			calcSpawn(k, l, tab2); 
+		}
+	}
 }
 
 let failtab = 
@@ -42,108 +68,23 @@ TET à PEN : 124 failstacks (20.1%)`
 let amelio = ['+7', '+8', '+9', '+10', '+11', '+12', '+13', '+14', '+15', 'PRI', 'DUO', 'TRI', 'TET'];
 let coeffAmelio = ['20', '17.5', '15', '12.5', '10', '7.5', '5', '2.5', '15', '7.5', '5', '2', '1.5'];
 let pourcentages = ['2.5', '2', '1.5', '1.25', '0.75', '0.63', '0.5', '0.5', '1.5', '0.75', '0.5', '0.25', '0.25'];
+let daysTab = ['1', '2', '3', '4', '5', '6', '7'];
 
 let kzarkaTab = {
-	1 : ['00,15', '18,08', '09,00', '22,15'],
-	2 : ['05,00'],
-	3 : ['05,00', '16,00', '22,15'],
-	5 : ['00,15', '19,00', '22,15'],
-	6 : ['19,00'],
-	7 : ['02,00', '12,00']
+	1 : ['00,15', '05,60', '09,60', '22,15'],
+	2 : ['05,60'],
+	3 : ['05,60', '16,60', '22,15'],
+	5 : ['00,15', '19,60', '22,15'],
+	6 : ['19,60'],
+	7 : ['02,60', '12,60']
 }
 
 setInterval(refreshDate, 60000);
 
 function loop(){
 
-	if (day == 1){
-		let hoursSplitKza = (String(kzarkaTab[1])).split(',');
-		if (hours == hoursSplitKza[0]) {
-			if (mins == parseInt(hoursSplitKza[1]) - 15 ){
-				channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);
-			}
-		}
-		if (hours == hoursSplitKza[2]){
-			if ((mins == parseInt(hoursSplitKza[3]) - 15) || ((parseInt(hoursSplitKza[3]) - 15) <= 0 && mins >= 45)) {
-				channel.send(`Le boss Kzarka va bientôt spawn !`);	
-				console.log('oof');
-			}
-		}
-		if (hours == hoursSplitKza[4]){
-			if (mins == parseInt(hoursSplitKza[5]) - 15){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`)
-			}
-		}
-		if (hours == hoursSplitKza[6]){
-			if (mins == parseInt(hoursSplitKza[7]) - 15){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`)
-			}
-		}
-	}
-	if (day == 2){
-		let hoursSplitKza = (String(kzarkaTab[2])).split(',');
-		if (hours == hoursSplitKza[0]) {
-			if (mins == parseInt(hoursSplitKza[1]) - 15 ){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);
-			}
-		}
-	}
-	if (day == 3){
-		let hoursSplitKza = (String(kzarkaTab[3])).split(',');
-		if (hours == hoursSplitKza[0]) {
-			if (mins == parseInt(hoursSplitKza[1]) - 15 ){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);
-			}
-		}
-		if (hours == hoursSplitKza[2]){
-			if (mins == parseInt(hoursSplitKza[3]) - 15) {
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);	
-			}
-		}
-		if (hours == hoursSplitKza[4]){
-			if (mins == parseInt(hoursSplitKza[5]) - 15){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`)
-			}
-		}
-	}
-	if (day == 5){
-		let hoursSplitKza = (String(kzarkaTab[5])).split(',');
-		if (hours == hoursSplitKza[0]) {
-			if (mins == parseInt(hoursSplitKza[1]) - 15 ){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);
-			}
-		}
-		if (hours == hoursSplitKza[2]){
-			if (mins == parseInt(hoursSplitKza[3]) - 15) {
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);	
-			}
-		}
-		if (hours == hoursSplitKza[4]){
-			if (mins == parseInt(hoursSplitKza[5]) - 15){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`)
-			}
-		}
-	}
-	if (day == 6){
-		let hoursSplitKza = (String(kzarkaTab[6])).split(',');
-		if (hours == hoursSplitKza[0]) {
-			if (mins == parseInt(hoursSplitKza[1]) - 15 ){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);
-			}
-		}
-	}
-	if (day == 1){
-		let hoursSplitKza = (String(kzarkaTab[1])).split(',');
-		if (hours == hoursSplitKza[0]) {
-			if (mins == parseInt(hoursSplitKza[1]) - 15 ){
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);
-			}
-		}
-		if (hours == hoursSplitKza[2]){
-			if (mins == parseInt(hoursSplitKza[3]) - 15) {
-				message.channel.send(`Le boss Kzarka va spawn dans 15 minutes !`);	
-			}
-		}
+	for(p = 0; p < daysTab.length; p++){
+		calcDay(p, kzarkaTab, 'kzarkaTemp');
 	}
 
 	bot.on('message', function (message) {
@@ -178,12 +119,7 @@ function loop(){
 			}
 			if (commandCase[1] == 'fail') { 
 				var nbEntier = parseInt(commandCase[2]); 
-				function calcStats(nbi){ 
-					if (commandCase[3] == amelio[nbi]) { 
-						chancetotal = parseInt(coeffAmelio[nbi]) + (pourcentages[nbi] * commandCase[2]);
-						message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`); 
-					} 
-				} 
+
 				if(Number.isInteger(nbEntier) && nbEntier >= 0 && nbEntier <= 124){ 
 					for (i=0; i< amelio.length; i++) { 
 						calcStats(i); 
@@ -213,6 +149,7 @@ function loop(){
 		}
 	});
 };
+
 var keyRaw = require('./key.js');
 var keyString = keyRaw.key;
 bot.login(keyString);
