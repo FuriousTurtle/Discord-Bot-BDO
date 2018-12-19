@@ -5,7 +5,7 @@ global.window = global;
 bot.on('ready', () => {
 	console.log('Bot ON');
 	bot.user.setActivity("Pour l'aide : !bunny help");
-	var channel = bot.get_channel('131164593799036935');
+	var channel = bot.channels.get('131164593799036935');
 });
 
 let day = 1;
