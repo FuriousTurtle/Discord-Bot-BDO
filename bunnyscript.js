@@ -222,7 +222,8 @@ function loop(){
 					!bunny links : Afficher des liens utiles contenant des informations importantes.
 					!bunny event : Afficher le lien vers l'event en cours.
 					!bunny maj : Afficher le lien vers les patch notes.
-					!bunny d6 : lancer un dé a 6 faces.`)
+					!bunny d6 : lancer un dé a 6 faces.
+					!bunny init : à lancer dans le canal de discussion pour setup le boss timer`)
 			}
 
 			//	Commande qui initie la séquence de calculs d'évènements
