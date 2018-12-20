@@ -1,52 +1,56 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 global.window = global;
+let channel;
+
+var keyRaw = require('./key.js');
+var keyString = keyRaw.key;
+bot.login(keyString);
 
 bot.on('ready', () => {
 	console.log('Bot ON');
 	bot.user.setActivity("Pour l'aide : !bunny help");
-	var channel = bot.channels.get('131164593799036935');
+    loop();
 });
 
 let day = 1;
 let hours;
 let mins;
 let today;
+let commandCase = [];
 
 function refreshDate(){
-today = new Date();
+	today = new Date();
 //	day = today.getDay();
 hours = today.getHours();
 mins = today.getMinutes();
 console.log("maj de l'heure");
-console.log(hours, mins);
-loop();
+console.log(`Il est ${hours}:${mins} !`);
 }
 
-function calcSpawn(nbu, nbv, tab2, boss) { 
-	if (hours == tab2[nbu]) { 
-		if (mins == parseInt(tab2[nbv]) - 15 || (parseInt(tab2[nbv]) - 15) == 0){ 
-			channel.send('Le boss Kzarka va spawn dans 15 minutes !'); 
-			console.log(`${hours}:${mins} => spawn de ${boss}`); 
+function calcSpawn(nb1, nb2, tab2, boss) {
+	if (hours == tab2[nb1] && (mins == parseInt(tab2[nb2]) - 15 || (parseInt(tab2[nb2]) == 15 && mins == 0))) {
+		channel.send('Le boss Kzarka va spawn dans 15 minutes !'); 
+		console.log(`${hours}:${mins} => spawn de ${boss}`); 
+	}
+}
+
+function calcDay(nbd, tab1, boss){
+	if (day == nbd){
+		global.tab2 = (String(tab1[nbd])).split(','); 
+		for(k = 0, l = 1 ; l < tab2.length ; k += 2, l +=2) { 
+			calcSpawn(k, l, tab2, boss); 
 		}
 	}
 }
 
-function calcStats(nbi){ 
+function calcStats(message, nbi){ 
 	if (commandCase[3] == amelio[nbi]) { 
 		chancetotal = parseInt(coeffAmelio[nbi]) + (pourcentages[nbi] * commandCase[2]);
 		message.reply(`les chances d'upgrade un item ${commandCase[3]} avec ${commandCase[2]} failstacks sont de ${chancetotal}%`); 
 	} 
 } 
 
-function calcDay(nbd,tab1,tab2, boss){
-	if (day == nbd){
-		global.tab2 = (String(tab1[nbd])).split(','); 
-		for(k = -2, l = -1 ; l < tab2.length ; k += 2, l +=2) { 
-			calcSpawn(k, l, tab2, boss); 
-		}
-	}
-}
 
 let failtab = 
 `Maximum de failstack par niveau d'arme
@@ -82,24 +86,26 @@ setInterval(refreshDate, 60000);
 
 function loop(){
 
-	let oof = 1;
-	if (oof = 1){
-		channel.send('Le boss Kzarka va spawn dans 15 minutes !');
-		oof++;
-	}
-
 	for(p = 0; p < daysTab.length; p++){
-		calcDay(p, kzarkaTab, 'kzarkaTemp', "Kzarka");
+		calcDay(p, kzarkaTab, "Kzarka");
 	}
 
 	bot.on('message', function (message) {
 
 		let commande = message.content;
-		let commandCase = commande.split(" ");
+		commandCase = commande.split(" ");
 		if (commandCase[0] == '!bunny') {
 			if (commandCase[1] == 'end') {
 				message.channel.send("Je rentre en hibernation !");
 				process.exit(0);
+			}
+			if (commandCase[1] == 'init'){
+				let oof = 1;
+				channel = message.channel;
+				if (oof = 1){
+					channel.send("Timers de boss initialisés ! (Kzarka seulement pour l'instant)");
+					oof++;
+				}
 			}
 			if (commandCase[1] == 'maj'){
 				message.channel.send('Lien vers les mises à jours : <https://community.blackdesertonline.com/index.php?forums/patch-notes.5/>');
@@ -127,7 +133,7 @@ function loop(){
 
 				if(Number.isInteger(nbEntier) && nbEntier >= 0 && nbEntier <= 124){ 
 					for (i=0; i< amelio.length; i++) { 
-						calcStats(i); 
+						calcStats(message,i); 
 					} 
 				} else { 
 					message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
@@ -148,14 +154,9 @@ function loop(){
 
 					`);
 			}
-			else if (commandCase[1] != 'failtab' && commandCase[1] != 'fail' && commandCase[1] != 'maj' && commandCase[1] != 'event' && commandCase[1] != 'help' && commandCase[1] != 'd6') {
+			else if (commandCase[1] != 'failtab' && commandCase[1] != 'fail' && commandCase[1] != 'maj' && commandCase[1] != 'event' && commandCase[1] != 'help' && commandCase[1] != 'd6' && commandCase[1] != 'init') {
 				message.reply(`Mauvaise commande, tapez !bunny help pour les syntaxes`);
 			}
 		}
 	});
 };
-
-var keyRaw = require('./key.js');
-var keyString = keyRaw.key;
-bot.login(keyString);
-loop();
